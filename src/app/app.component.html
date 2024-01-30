@@ -1,0 +1,179 @@
+<main class="container main card" style="border: 2px solid #ccc; padding: 60px;">
+  <h2 class="text-center mb-4">FORMULARIO</h2>
+  <div class=" mb-3 card-body">
+    
+    <form [formGroup]="formulario" (ngSubmit)="guardarEmpleado()" novalidate>
+      <div class="row">
+        <div class="mb-3 col-md-4">
+          <label class="col-sm-4 col-form-label" for="nombre">Nombre:</label>
+          <input class="form-control" type="text" id="nombre" name="nombre" formControlName="nombre" />
+          
+          <div class="mb-3" *ngIf="formularioEnviado && formulario.get('nombre')?.hasError('required')">
+            <small class="text-danger">El nombre es obligatorio.</small>
+          </div>
+          
+          <div class="mb-3" *ngIf="formularioEnviado && formulario.get('nombre')?.hasError('minlength')">
+            <small class="text-danger">El nombre debe tener al menos 3 caracteres.</small>
+          </div>
+        
+          <div class="mb-3" *ngIf="formularioEnviado && formulario.get('nombre')?.hasError('maxlength')">
+            <small class="text-danger">El nombre no puede tener más de 30 caracteres.</small>
+          </div>
+        
+          <div class="mb-3" *ngIf="formularioEnviado && formulario.get('nombre')?.hasError('pattern')">
+            <small class="text-danger">El nombre solo puede contener letras.</small>
+          </div>
+        </div>
+        
+
+        <div class="mb-3 col-md-4">
+          <label class="col-sm-4 col-form-label" for="cedula">Cédula:</label>
+          <input class="form-control" type="text" id="cedula" name="cedula" formControlName="cedula" />
+          
+          <div class="mb-3" *ngIf="formularioEnviado && formulario.get('cedula')?.hasError('required')">
+            <small class="text-danger">La cédula es obligatoria.</small>
+          </div>
+          
+          <div class="mb-3" *ngIf="formularioEnviado && formulario.get('cedula')?.hasError('minlength')">
+            <small class="text-danger">La cédula debe tener al menos 10 caracteres.</small>
+          </div>
+        
+          <div class="mb-3" *ngIf="formularioEnviado && formulario.get('cedula')?.hasError('maxlength')">
+            <small class="text-danger">La cédula no puede tener más de 13 caracteres.</small>
+          </div>
+        
+          <div class="mb-3" *ngIf="formularioEnviado && formulario.get('cedula')?.hasError('pattern')">
+            <small class="text-danger">La cédula solo puede contener números.</small>
+          </div>
+        </div>
+        
+
+        <div class="mb-3 col-md-4">
+          <label class="col-sm-4 col-form-label" for="telefono">Teléfono:</label>
+          <input class="form-control" type="tel" id="telefono" name="telefono" formControlName="telefono" />
+          
+          <div class="mb-3" *ngIf="formularioEnviado && formulario.get('telefono')?.hasError('required')">
+            <small class="text-danger">El teléfono es obligatorio.</small>
+          </div>
+          
+          <div class="mb-3" *ngIf="formularioEnviado && formulario.get('telefono')?.hasError('minlength')">
+            <small class="text-danger">El teléfono debe tener al menos 10 caracteres.</small>
+          </div>
+        
+          <div class="mb-3" *ngIf="formularioEnviado && formulario.get('telefono')?.hasError('maxlength')">
+            <small class="text-danger">El teléfono no puede tener más de 33 caracteres.</small>
+          </div>
+        
+          <div class="mb-3" *ngIf="formularioEnviado && formulario.get('telefono')?.hasError('pattern')">
+            <small class="text-danger">El teléfono solo puede contener números.</small>
+          </div>
+        </div>
+        
+      </div>
+
+      <div class="row">
+
+        <div class="mb-3 col-md-4">
+          <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+          <input class="form-control text-center" type="date" id="fechaNacimiento" name="fechaNacimiento" formControlName="fechaNacimiento" />
+          
+          <div class="mb-3" *ngIf="formularioEnviado && formulario.get('fechaNacimiento')?.hasError('required')">
+            <small class="text-danger">La fecha de nacimiento es obligatoria.</small>
+          </div>
+          
+          <div class="mb-3" *ngIf="formularioEnviado && formulario.get('fechaNacimiento')?.hasError('invalidDate')">
+            <small class="text-danger">La fecha no es válida.</small>
+          </div>
+        
+          <div class="mb-3" *ngIf="formularioEnviado && formulario.get('fechaNacimiento')?.hasError('invalidRange')">
+            <small class="text-danger">La fecha debe estar entre 1900-01-01 y la fecha actual.</small>
+          </div>
+        </div>
+        
+
+        <div class="mb-3 col-md-4">
+          <label for="salario">Salario:</label>
+          <input class="form-control" type="number" id="salario" name="salario" formControlName="salario" />
+          
+          <div class="mb-3" *ngIf="formularioEnviado && formulario.get('salario')?.hasError('required')">
+            <small class="text-danger">El salario es obligatorio.</small>
+          </div>
+          
+          <div class="mb-3" *ngIf="formularioEnviado && formulario.get('salario')?.hasError('min')">
+            <small class="text-danger">El salario debe ser mínimo el salario básico.</small>
+          </div>
+        
+          <div class="mb-3" *ngIf="formularioEnviado && formulario.get('salario')?.hasError('max')">
+            <small class="text-danger">El salario debe ser máximo $5000 dólares.</small>
+          </div>
+        </div>
+        
+
+        <div class="mb-3 col-md-4">
+          <label for="sitioWeb">Sitio Web:</label>
+          <input class="form-control" type="url" id="sitioWeb" name="sitioWeb" formControlName="sitioWeb" />
+          
+          <div class="mb-3" *ngIf="formularioEnviado && formulario.get('sitioWeb')?.hasError('required')">
+            <small class="text-danger">El sitio web es obligatorio.</small>
+          </div>
+          
+          <div class="mb-3" *ngIf="formularioEnviado && formulario.get('sitioWeb')?.hasError('pattern')">
+            <small class="text-danger">El sitio web debe ser válido.</small>
+          </div>
+        </div>
+        
+
+      </div>
+
+
+      <div class="row">
+        <div class="mb-3 col-md-6">
+          <label for="email">Email:</label>
+          <input class="form-control" type="email" id="email" name="email" formControlName="email" />
+          
+          <div class="mb-3" *ngIf="formularioEnviado && formulario.get('email')?.hasError('required')">
+            <small class="text-danger">El email es obligatorio.</small>
+          </div>
+          
+          <div class="mb-3" *ngIf="formularioEnviado && formulario.get('email')?.hasError('email')">
+            <small class="text-danger">El email debe ser válido.</small>
+          </div>
+        </div>
+        
+
+        <div class="mb-3 col-md-6">
+          <label for="contrasena">Contraseña:</label>
+          <input class="form-control" type="password" id="contrasena" name="contrasena" formControlName="contrasena" />
+          
+          <div class="mb-3" *ngIf="formularioEnviado && formulario.get('contrasena')?.hasError('required')">
+            <small class="text-danger">La contraseña es obligatoria.</small>
+          </div>
+          
+          <div class="mb-3" *ngIf="formularioEnviado && formulario.get('contrasena')?.hasError('minlength')">
+            <small class="text-danger">Debe tener mínimo 8 caracteres.</small>
+          </div>
+        
+          <div class="mb-3" *ngIf="formularioEnviado && formulario.get('contrasena')?.hasError('maxlength')">
+            <small class="text-danger">Debe tener máximo 12 caracteres.</small>
+          </div>
+        
+          <div class="mb-3" *ngIf="formularioEnviado && formulario.get('contrasena')?.hasError('pattern')">
+            <small class="text-danger">Debe contener al menos una letra mayúscula, una minúscula, un número y un carácter especial.</small>
+          </div>
+        </div>
+        
+      </div>
+
+
+      <div class="mb-3 text-center">
+        <input class="btn btn-success btn-lg" type="submit" value="Enviar" />
+      </div>
+
+      <div *ngIf="mensaje" class="mb-3 text-center">
+        <div class="alert" [ngClass]="formulario.valid ? 'alert-success' : 'alert-danger'">
+          {{ mensaje }}
+        </div>
+      </div>
+    </form>
+  </div>
+</main>
